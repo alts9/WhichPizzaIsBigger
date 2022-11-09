@@ -72,6 +72,14 @@ nav button:nth-child(1){
     padding-right: 15px;
 }
 
+table{
+    font-size: 0.9rem;
+}
+
+thead{
+    background-color: aliceblue;
+}
+
 th{
     padding-left: 7px;
     padding-right: 7px;
@@ -84,15 +92,23 @@ td{
 .deleteButton, .addButton{
     padding: 4px 6px;
     border-radius: 5px;
-    color: hsl(0, 0%, 90%);
+    color: hsl(0, 0%, 97%);
     font-size: 0.8rem;
     width: 70px;
 }
 
 .deleteButton{
-    background-color: hsl(359, 77%, 64%);
+    background-color: hsl(0, 100%, 70%);
+}
+
+.deleteButton:hover{
+    background-color: hsl(0, 70%, 60%);
 }
 
 .addButton{
-    background-color: hsl(152, 77%, 47%);
+    background-color: hsl(150, 77%, 57%);
+}
+
+.addButton:hover{
+    background-color: hsl(150, 57%, 47%);
 }

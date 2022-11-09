@@ -39,46 +39,40 @@
         <div class="order">
         </div>
         <table>
-            <tr>
-                <th>Diameter (in)</th>
-                <th>Area (in<sup>2</sup>)</th>
-                <th>Crust (in<sup>2</sup>)</th>
-                <th>Area-crust (in<sup>2</sup>)</th>
-                <th>Qty</th>
-                <th>Price ($)</th>
-                <th>Price/in<sup>2</sup></th>
-                <th>Options</th>
-            </tr>
-            <tr>
-                <td><input type="number" id="" name="" value="12"></td>
-                <td>113</td>
-                <td>18</td>
-                <td>95</td>
-                <td><input type="number" id="" name="" value="2"></td>
-                <td>10</td>
-                <td>0.1</td>
-                <td><button class="deleteButton">Delete</button></td>
-            </tr>
-            <tr>
-                <td><input type="number" id="" name="" value="12"></td>
-                <td>113</td>
-                <td>18</td>
-                <td>95</td>
-                <td><input type="number" id="" name="" value="2"></td>
-                <td>10</td>
-                <td>0.1</td>
-                <td><button class="deleteButton">Delete</button></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td><button class="addButton">Add New</button></td>
-            </tr>
+            <thead>
+                <tr>
+                    <th>Diameter (in)</th>
+                    <th>Qty</th>
+                    <th>Area (in<sup>2</sup>)</th>
+                    <th>Crust (in<sup>2</sup>)</th>
+                    <th>Area-crust (in<sup>2</sup>)</th>
+                    <th>Price ($)</th>
+                    <th>Price/in<sup>2</sup></th>
+                    <th>Options</th>
+                </tr>
+            </thead>
+            <tbody  class="pizzaList">
+                <tr>
+                    <td><input type="number" class="diameterInput" name="" value="12"></td>
+                    <td><input type="number" class="quantityInput" name="" value="2"></td>
+                    <td class="area">113</td>
+                    <td class="crust">18</td>
+                    <td class="area-crust">95</td>
+                    <td><input type="number" class="priceInput" name="" value="10"></td>
+                    <td class="pricePerIn">0.1</td>
+                    <td><button class="deleteButton">Delete</button></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><button class="addButton">Add New</button></td>
+                </tr>
+            </tbody>
         </table>
     </section>
 </body>
