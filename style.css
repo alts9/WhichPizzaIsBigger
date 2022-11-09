@@ -1,10 +1,11 @@
 body{
     font-family: Rubik, sans-serif;
-    color: hsl(0, 0%, 20%);
-    margin: 0% 20%;
+    color: hsl(0, 0%, 25%);
+    margin: 0% auto;
+    width: 750px;
 }
 
-button, input[type="submit"], input[type="reset"] {
+button, input[type="submit"], input[type="reset"]{
 	background: none;
 	color: inherit;
 	border: none;
@@ -12,6 +13,13 @@ button, input[type="submit"], input[type="reset"] {
 	font: inherit;
 	cursor: pointer;
 	outline: inherit;
+    font-size: 0.9rem;
+}
+
+input[type="number"]{
+    width: 30px;
+    border: 1px solid hsl(0, 0%, 80%);
+    border-radius: 3px;
 }
 
 P{
@@ -19,45 +27,72 @@ P{
 }
 
 header{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     padding-top: 15px;
-    background-color: aliceblue;
-}
-
-header .logo{
-    display: flex;
-    align-items: center;
-}
-
-header .logo p{
-    font-weight: 600;
-    font-size: 25px;
-}
-
-header .logo span{
-    font-size: 35px;
-}
-
-nav button:nth-child(1){
-    padding-right: 20px;
-}
-
-.hero{
-    font-size: 45px;
-    font-weight: 600;
-    padding: 40px;
     text-align: center;
 }
 
-.popular .title{
-    font-size: 1.2rem;
-    padding: 15px;
+header .logo{
+    font-size: 35px;
 }
+
+header .logo span{
+    font-weight: 300;
+} 
+
+nav{
+    text-align: center;
+}
+
+nav button{
+    padding: 3px 6px;
+    background-color: hsl(0, 0%, 95%);
+    border-radius: 5px;
+}
+
+nav button:nth-child(1){
+    margin-right: 10px;
+}
+
 
 .popular button{
     padding: 3px 6px;
     background-color: hsl(0, 0%, 95%);
     border-radius: 5px;
+}
+
+.compare{
+    padding-top: 20px;
+}
+
+.compare .options{
+    padding-bottom: 10px;
+}
+
+.compare .options label{
+    padding-right: 15px;
+}
+
+th{
+    padding-left: 7px;
+    padding-right: 7px;
+}
+
+td{
+    text-align: center;
+}
+
+.deleteButton, .addButton{
+    padding: 4px 6px;
+    border-radius: 5px;
+    color: hsl(0, 0%, 90%);
+    font-size: 0.8rem;
+    width: 70px;
+}
+
+.deleteButton{
+    background-color: hsl(359, 77%, 64%);
+}
+
+.addButton{
+    background-color: hsl(152, 77%, 47%);
 }

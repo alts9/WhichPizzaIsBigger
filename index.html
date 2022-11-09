@@ -13,23 +13,73 @@
 <body>
     <header>
         <button class="logo">
-            <span>🍕</span>
-            <p>WPIB?</p>
+            <h2><span>🍕</span> Which pizza is bigger?</h2>
         </button>
-        <nav>
-            <button>Help</button>
-            <button>About</button>
-        </nav>
     </header>
-    <section class="hero">
-        Find the best pizza deal..
-    </section>
+    <nav>
+        <button>Help</button>
+        <button>About</button>
+    </nav>
     <section class="popular">
-        <div class="title">Popular search</div>
+        <h3 class="title">Popular comparison</h3>
         <button>18" vs 2x12"</button>
         <button>18" vs 2x12"</button>
         <button>18" vs 2x12"</button>
         <button>18" vs 2x12"</button>
+    </section>
+    <section class="compare">
+        <h3 class="title">Compare pizza</h3>
+        <div class="options">
+            <input type="checkbox" name="checkCrust" id="">
+            <label for="checkCrust">Include crust</label>
+            <input type="number" id="" name="" value="12">
+            <input type="checkbox" name="checkPrice" id="">
+            <label for="checkCrust">Include price</label>
+        </div>
+        <div class="order">
+        </div>
+        <table>
+            <tr>
+                <th>Diameter (in)</th>
+                <th>Area (in<sup>2</sup>)</th>
+                <th>Crust (in<sup>2</sup>)</th>
+                <th>Area-crust (in<sup>2</sup>)</th>
+                <th>Qty</th>
+                <th>Price ($)</th>
+                <th>Price/in<sup>2</sup></th>
+                <th>Options</th>
+            </tr>
+            <tr>
+                <td><input type="number" id="" name="" value="12"></td>
+                <td>113</td>
+                <td>18</td>
+                <td>95</td>
+                <td><input type="number" id="" name="" value="2"></td>
+                <td>10</td>
+                <td>0.1</td>
+                <td><button class="deleteButton">Delete</button></td>
+            </tr>
+            <tr>
+                <td><input type="number" id="" name="" value="12"></td>
+                <td>113</td>
+                <td>18</td>
+                <td>95</td>
+                <td><input type="number" id="" name="" value="2"></td>
+                <td>10</td>
+                <td>0.1</td>
+                <td><button class="deleteButton">Delete</button></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><button class="addButton">Add New</button></td>
+            </tr>
+        </table>
     </section>
 </body>
 <script src="script.js"></script>
