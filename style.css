@@ -74,20 +74,30 @@ nav button:nth-child(1){
 
 table{
     font-size: 0.9rem;
+    border-spacing:0; /* Removes the cell spacing via CSS */
+    border-collapse: collapse; 
 }
 
 thead{
     background-color: aliceblue;
 }
 
+tr{
+    height: 35px;
+}
+
 th{
-    padding-left: 7px;
-    padding-right: 7px;
+    padding: 4px 10px;
 }
 
 td{
     text-align: center;
 }
+
+.pizzaList tr:nth-child(even){
+    background-color: #f2f2f2;
+}
+
 
 .deleteButton, .addButton{
     padding: 4px 6px;

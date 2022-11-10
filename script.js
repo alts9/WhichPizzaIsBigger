@@ -1,15 +1,47 @@
 const elements = (() => {
     const pizzaList = document.querySelector('.pizzaList');
+    const addRow = document.querySelector('.addRow');
+    let allDelete = document.querySelectorAll('.deleteButton');
+    let allShownPizza = document.querySelectorAll('.pizza');
     return {
-        pizzaList, 
+        pizzaList, addRow, allDelete, allShownPizza
     };
 })();
 
+function eventListener(){
+    allDelete = document.querySelectorAll('.deleteButton');
+    allDelete.forEach((deleteButton) => {
+        deleteButton.onmousedown = () => deletePizza(deleteButton.dataset.id);
+    });
+}
+
+function deletePizza(idToDelete){
+    for (i=0; i<allPizza.length; i++){
+        if (idToDelete == allPizza[i].id){
+            allPizza.splice(i, 1);
+        };
+    }
+    refreshDisplayedPizza();
+}
+
+let allPizza = [];
+pizzaId = 0;
+
 class Pizza{
-    constructor(diameter, quantity, price) {
+    constructor(id, diameter, quantity, price) {
+        this.id = id;
         this.diameter = diameter;
         this.quantity = quantity;
         this.price = price;
+        pizzaId++;
+    }
+
+    get id() {
+        return this._id;
+    }
+
+    set id(value) {
+        this._id = value;
     }
 
     get diameter() {
@@ -53,47 +85,94 @@ class Pizza{
     }
 }
 
-let pizza1 = new Pizza(10, 1, 10)
-console.log("diameter: " + pizza1._diameter)
-console.log("qty: " + pizza1._quantity)
-console.log("area: " + pizza1.countArea())
-console.log("crust: " + pizza1.countCrust())
-console.log("area-crust: " + pizza1.countAreaMinCrust())
-console.log("price: " + pizza1._price)
-console.log("$/sqin: " + pizza1.countPricePerSquareInch())
+let pizza3 = new Pizza(pizzaId, 6, 1, 6)
+allPizza.push(pizza3);
+let pizza2 = new Pizza(pizzaId, 8, 1, 8)
+allPizza.push(pizza2);
+let pizza1 = new Pizza(pizzaId, 10, 1, 10)
+allPizza.push(pizza1);
+// console.log("id: " + pizza1._id)
+// console.log("diameter: " + pizza1._diameter)
+// console.log("qty: " + pizza1._quantity)
+// console.log("area: " + pizza1.countArea())
+// console.log("crust: " + pizza1.countCrust())
+// console.log("area-crust: " + pizza1.countAreaMinCrust())
+// console.log("price: " + pizza1._price)
+// console.log("$/sqin: " + pizza1.countPricePerSquareInch())
 
-let tr = document.createElement('tr');
-//diameter
-let td = document.createElement('td');
-td.innerText = pizza1._diameter
-tr.appendChild(td);
-//qty
-td = document.createElement('td');
-td.innerText = pizza1._quantity
-tr.appendChild(td);
-//area
-td = document.createElement('td');
-td.innerText = pizza1.countArea()
-tr.appendChild(td);
-//crust
-td = document.createElement('td');
-td.innerText = pizza1.countCrust()
-tr.appendChild(td);
-//area-crust
-td = document.createElement('td');
-td.innerText = pizza1.countAreaMinCrust()
-tr.appendChild(td);
-//price
-td = document.createElement('td');
-td.innerText = pizza1._price
-tr.appendChild(td);
-//price/in
-td = document.createElement('td');
-td.innerText = pizza1.countPricePerSquareInch()
-tr.appendChild(td);
-//option
-td = document.createElement('td');
-td.innerText = "12345"
-tr.appendChild(td);
+function addDisplayedPizza(pizza)  {
+    let tr = document.createElement('tr');
+    let td = document.createElement('td');
+    let input = document.createElement('input');
+    let deleteButton = document.createElement('button');
+    //diameter
+    td = document.createElement('td');
+        input = document.createElement('input');
+        input.value = pizza._diameter;
+        input.setAttribute("type", "number")
+        input.classList.add('diameterInput');
+        td.appendChild(input)
+    tr.appendChild(td);
+    //qty
+    td = document.createElement('td');
+        input = document.createElement('input');
+        input.value = pizza._quantity;
+        input.setAttribute("type", "number")
+        input.classList.add('quantityInput');
+        td.appendChild(input)
+    tr.appendChild(td);
+    //area
+    td = document.createElement('td');
+    td.innerText = pizza.countArea()
+    tr.appendChild(td);
+    //crust
+    td = document.createElement('td');
+    td.innerText = pizza.countCrust()
+    tr.appendChild(td);
+    //area-crust
+    td = document.createElement('td');
+    td.innerText = pizza.countAreaMinCrust()
+    tr.appendChild(td);
+    //price
+    td = document.createElement('td');
+        input = document.createElement('input');
+        input.value = pizza._price;
+        input.setAttribute("type", "number")
+        input.classList.add('priceInput');
+        td.appendChild(input)
+    tr.appendChild(td);
+    //price/in
+    td = document.createElement('td');
+    td.innerText = pizza.countPricePerSquareInch()
+    tr.appendChild(td);
+    //option
+    td = document.createElement('td');
+        deleteButton = document.createElement('button');
+        deleteButton.innerText = "Delete"
+        deleteButton.classList.add("deleteButton");
+        deleteButton.setAttribute("data-id", pizza._id)
+        td.appendChild(deleteButton);
+    tr.classList.add('pizza')
+    tr.appendChild(td);
 
-elements.pizzaList.appendChild(tr);
+    elements.pizzaList.insertBefore(tr, elements.addRow);
+};
+
+function removeAllShownPizza(){
+    allShownPizza = document.querySelectorAll('.pizza');
+    allShownPizza.forEach((pizza) => {
+        pizza.remove();
+    });
+}
+
+function refreshDisplayedPizza(){
+    removeAllShownPizza();
+    for (i=0; i<allPizza.length; i++){
+        addDisplayedPizza(allPizza[i]);
+    }
+    eventListener()
+}
+
+
+refreshDisplayedPizza();
+eventListener();
