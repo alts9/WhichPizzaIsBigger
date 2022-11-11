@@ -1,14 +1,77 @@
 const elements = (() => {
     const pizzaList = document.querySelector('.pizzaList');
     const addRow = document.querySelector('.addRow');
+    const addButton = document.querySelector('.addButton');
+    const checkboxCrust = document.getElementById('checkboxCrust');
+    const checkboxPrice = document.getElementById('checkboxPrice');
+    const table = document.querySelector('table')
     let allDelete = document.querySelectorAll('.deleteButton');
     let allShownPizza = document.querySelectorAll('.pizza');
+    let allDiameter = document.querySelectorAll('.diameterInput');
+    let allQuantity = document.querySelectorAll('.quantityInput');
+    let allPrice = document.querySelectorAll('.priceInput');
     return {
-        pizzaList, addRow, allDelete, allShownPizza
+        pizzaList, addRow, allDelete, allShownPizza, allDiameter, allQuantity,
+        allPrice, addButton, checkboxCrust, checkboxPrice, table
     };
 })();
 
-function eventListener(){
+function generalEvent(){
+    elements.addButton.onmousedown = () => addNewPizza();
+    elements.checkboxCrust.oninput = () => toggleCrust(checkboxCrust);
+    elements.checkboxPrice.oninput = () => togglePrice(checkboxPrice);
+}
+
+function togglePrice(checkboxPrice){
+    elements.allShownPizza = document.querySelectorAll('.pizza');
+    let nextStatus = 'none';
+    if(checkboxPrice.checked === true){
+        nextStatus = 'table-cell'
+    }
+    function toggle(nextStatus){
+        elements.table.childNodes[1].childNodes[1].childNodes[11].style.display = nextStatus;
+        elements.table.childNodes[1].childNodes[1].childNodes[13].style.display = nextStatus;
+        elements.allShownPizza.forEach((pizza) => {
+            pizza.childNodes[5].style.display = nextStatus;
+            pizza.childNodes[6].style.display = nextStatus;
+        });
+        let i = elements.table.childNodes[3].childNodes.length;
+        elements.table.childNodes[3].childNodes[i-2].childNodes[11].style.display = nextStatus;
+        elements.table.childNodes[3].childNodes[i-2].childNodes[13].style.display = nextStatus;
+    };
+    toggle(nextStatus);
+}
+
+function toggleCrust(checkboxCrust){
+    elements.allShownPizza = document.querySelectorAll('.pizza');
+    let nextStatus = 'none';
+    if(checkboxCrust.checked === true){
+        nextStatus = 'table-cell'
+    }
+    function toggle(nextStatus){
+        elements.table.childNodes[1].childNodes[1].childNodes[7].style.display = nextStatus;
+        elements.table.childNodes[1].childNodes[1].childNodes[9].style.display = nextStatus;
+        elements.allShownPizza.forEach((pizza) => {
+            pizza.childNodes[3].style.display = nextStatus;
+            pizza.childNodes[4].style.display = nextStatus;
+        });
+        let i = elements.table.childNodes[3].childNodes.length;
+        elements.table.childNodes[3].childNodes[i-2].childNodes[7].style.display = nextStatus;
+        elements.table.childNodes[3].childNodes[i-2].childNodes[9].style.display = nextStatus;
+    };
+    toggle(nextStatus);
+}
+
+function addNewPizza(){
+    let newPizza = new Pizza(10, 1, 10)
+    allPizza.push(newPizza);
+    refreshDisplayedPizza();
+    diameterEvent();
+    quantityEvent();
+    priceEvent();
+}
+
+function deleteEvent(){
     allDelete = document.querySelectorAll('.deleteButton');
     allDelete.forEach((deleteButton) => {
         deleteButton.onmousedown = () => deletePizza(deleteButton.dataset.id);
@@ -16,32 +79,77 @@ function eventListener(){
 }
 
 function deletePizza(idToDelete){
-    for (i=0; i<allPizza.length; i++){
-        if (idToDelete == allPizza[i].id){
-            allPizza.splice(i, 1);
-        };
-    }
+    allPizza.splice(idToDelete, 1);
     refreshDisplayedPizza();
+    diameterEvent();
+    quantityEvent();
+    priceEvent();
+}
+
+function diameterEvent(){
+    allDiameter = document.querySelectorAll('.diameterInput');
+    allDiameter.forEach((diameterInput) => {
+        diameterInput.oninput = () => updateDiameter(diameterInput.value, diameterInput.dataset.id);
+    });
+}
+
+function updateDiameter(newValue, id){
+    allPizza[id]._diameter = newValue;
+    updateFixedValue(id)
+}
+
+function quantityEvent(){
+    allQuantity = document.querySelectorAll('.quantityInput');
+    allQuantity.forEach((quantityInput) => {
+        quantityInput.oninput = () => updateQuantity(quantityInput.value, quantityInput.dataset.id);
+    });
+}
+
+function updateQuantity(newValue, id){
+    allPizza[id]._quantity = newValue;
+    updateFixedValue(id);
+}
+
+function priceEvent(){
+    allPrice = document.querySelectorAll('.priceInput');
+    allPrice.forEach((priceInput) => {
+        priceInput.oninput = () => updatePrice(priceInput.value, priceInput.dataset.id);
+    });
+}
+
+function updatePrice(newValue, id){
+    allPizza[id]._price = newValue;
+    updateFixedValue(id);
+}
+
+
+
+//fixedValue: area, crust, area-crust, price/in
+function updateFixedValue(id){
+    allShownPizza = document.querySelectorAll('.pizza');
+    allShownPizza[id].childNodes[2].innerText = allPizza[id].countArea();
+    allShownPizza[id].childNodes[3].innerText = allPizza[id].countCrust();
+    allShownPizza[id].childNodes[4].innerText = allPizza[id].countAreaMinCrust();
+    allShownPizza[id].childNodes[6].innerText = allPizza[id].countPricePerSquareInch();
+}
+
+
+
+function updateIndex(){
+    for (i=0; i<allPizza.length; i++){
+        allPizza[i]._id = i;
+    }
 }
 
 let allPizza = [];
 pizzaId = 0;
 
 class Pizza{
-    constructor(id, diameter, quantity, price) {
-        this.id = id;
+    constructor(diameter, quantity, price) {
         this.diameter = diameter;
         this.quantity = quantity;
         this.price = price;
         pizzaId++;
-    }
-
-    get id() {
-        return this._id;
-    }
-
-    set id(value) {
-        this._id = value;
     }
 
     get diameter() {
@@ -69,38 +177,32 @@ class Pizza{
     }
 
     countArea() {
-        return (3.14*(this._diameter/2)**2).toFixed(1);
+        return ((3.14*(this._diameter/2)**2)*this._quantity).toFixed(0);
     }
 
     countCrust() {
-        return (this.countArea() - this.countAreaMinCrust()).toFixed(1);
+        return (this.countArea() - this.countAreaMinCrust()).toFixed(0);
     }
 
     countAreaMinCrust() {
-        return (3.14*((this._diameter-1)/2)**2).toFixed(1);
+        return ((3.14*((this._diameter-1)/2)**2)*this._quantity).toFixed(0);
     }
 
     countPricePerSquareInch() {
-        return (pizza1._price/this.countArea()).toFixed(2);
+        return (this._price/this.countArea()*this._quantity).toFixed(2);
     }
 }
 
-let pizza3 = new Pizza(pizzaId, 6, 1, 6)
+let pizza4 = new Pizza(6, 1, 6)
+allPizza.push(pizza4);
+let pizza3 = new Pizza(8, 1, 8)
 allPizza.push(pizza3);
-let pizza2 = new Pizza(pizzaId, 8, 1, 8)
+let pizza2 = new Pizza(10, 1, 10)
 allPizza.push(pizza2);
-let pizza1 = new Pizza(pizzaId, 10, 1, 10)
+let pizza1 = new Pizza(12, 1, 12)
 allPizza.push(pizza1);
-// console.log("id: " + pizza1._id)
-// console.log("diameter: " + pizza1._diameter)
-// console.log("qty: " + pizza1._quantity)
-// console.log("area: " + pizza1.countArea())
-// console.log("crust: " + pizza1.countCrust())
-// console.log("area-crust: " + pizza1.countAreaMinCrust())
-// console.log("price: " + pizza1._price)
-// console.log("$/sqin: " + pizza1.countPricePerSquareInch())
 
-function addDisplayedPizza(pizza)  {
+function addDisplayedPizza(pizza, i)  {
     let tr = document.createElement('tr');
     let td = document.createElement('td');
     let input = document.createElement('input');
@@ -111,6 +213,7 @@ function addDisplayedPizza(pizza)  {
         input.value = pizza._diameter;
         input.setAttribute("type", "number")
         input.classList.add('diameterInput');
+        input.setAttribute("data-id", i)
         td.appendChild(input)
     tr.appendChild(td);
     //qty
@@ -119,6 +222,7 @@ function addDisplayedPizza(pizza)  {
         input.value = pizza._quantity;
         input.setAttribute("type", "number")
         input.classList.add('quantityInput');
+        input.setAttribute("data-id", i)
         td.appendChild(input)
     tr.appendChild(td);
     //area
@@ -139,6 +243,7 @@ function addDisplayedPizza(pizza)  {
         input.value = pizza._price;
         input.setAttribute("type", "number")
         input.classList.add('priceInput');
+        input.setAttribute("data-id", i)
         td.appendChild(input)
     tr.appendChild(td);
     //price/in
@@ -150,7 +255,7 @@ function addDisplayedPizza(pizza)  {
         deleteButton = document.createElement('button');
         deleteButton.innerText = "Delete"
         deleteButton.classList.add("deleteButton");
-        deleteButton.setAttribute("data-id", pizza._id)
+        deleteButton.setAttribute("data-id", i)
         td.appendChild(deleteButton);
     tr.classList.add('pizza')
     tr.appendChild(td);
@@ -168,11 +273,28 @@ function removeAllShownPizza(){
 function refreshDisplayedPizza(){
     removeAllShownPizza();
     for (i=0; i<allPizza.length; i++){
-        addDisplayedPizza(allPizza[i]);
+        addDisplayedPizza(allPizza[i], i);
     }
-    eventListener()
+    deleteEvent()
 }
 
+function popular1(){
+    allPizza = [];
+    let pizza2 = new Pizza(17, 1, 7)
+    allPizza.push(pizza2);
+    let pizza1 = new Pizza(15, 1, 7)
+    allPizza.push(pizza1);
+    refreshDisplayedPizza();
+    deleteEvent();
+    diameterEvent();
+    quantityEvent();
+    priceEvent();
+    generalEvent();
+}
 
 refreshDisplayedPizza();
-eventListener();
+deleteEvent();
+diameterEvent();
+quantityEvent();
+priceEvent();
+generalEvent();
