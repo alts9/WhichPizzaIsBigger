@@ -3,6 +3,8 @@ body{
     color: hsl(0, 0%, 25%);
     margin: 0% auto;
     width: 750px;
+    /*flex-direction: column;
+    align-items: center; */
 }
 
 button, input[type="submit"], input[type="reset"]{
@@ -39,25 +41,14 @@ header .logo span{
     font-weight: 300;
 } 
 
-nav{
-    text-align: center;
-}
-
-nav button{
-    padding: 3px 6px;
-    background-color: hsl(0, 0%, 95%);
-    border-radius: 5px;
-}
-
-nav button:nth-child(1){
-    margin-right: 10px;
-}
-
-
 .popular button{
     padding: 3px 6px;
     background-color: hsl(0, 0%, 95%);
     border-radius: 5px;
+}
+
+.popular button:hover{
+    background-color: hsl(0, 0%, 80%);
 }
 
 .compare{
@@ -92,6 +83,7 @@ th{
 
 td{
     text-align: center;
+    font-size: 0.9rem;
 }
 
 .pizzaList tr:nth-child(even){
@@ -121,4 +113,14 @@ td{
 
 .addButton:hover{
     background-color: hsl(150, 57%, 47%);
+}
+
+footer{
+    padding-top: 100px;
+    text-align: center;
+}
+
+a{
+    color: inherit;
+    text-decoration-color: inherit;
 }

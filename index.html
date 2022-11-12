@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="pizza.png">
 </head>
 <body>
     <header>
@@ -16,17 +17,13 @@
             <h2><span>🍕</span> Which pizza is bigger?</h2>
         </button>
     </header>
-    <nav>
-        <button>Help</button>
-        <button>About</button>
-    </nav>
     <section class="popular">
         <h3 class="title">Popular comparison</h3>
-        <button>18" vs 2x12"</button>
-        <button>16" vs 2x12"</button>
-        <button>16" vs 18"</button>
-        <button>16" vs 4x8"</button>
-        <button>12" vs 2x8"</button>
+        <button id="popular1">18" vs 12"(2)</button>
+        <button id="popular2">18" vs 16"</button>
+        <button id="popular3">16" vs 12"(2)</button>
+        <button id="popular4">16" vs 8"(4)</button>
+        <button id="popular5">12" vs 8"(2)</button>
     </section>
     <section class="compare">
         <h3 class="title">Compare pizza</h3>
@@ -75,6 +72,9 @@
             </tbody>
         </table>
     </section>
+    <footer>
+        2022 - <a href="https://github.com/alts9">alts9</a>
+    </footer>
 </body>
 <script src="script.js"></script>
 </html>
