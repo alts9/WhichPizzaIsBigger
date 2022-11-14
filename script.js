@@ -200,7 +200,7 @@ class Pizza{
     }
 
     countPricePerSquareInch() {
-        return (this._price/this.countArea()*this._quantity).toFixed(2);
+        return (this._price/this.countArea()).toFixed(2);
     }
 }
 
@@ -296,6 +296,8 @@ function popular1(){
     let pizza1 = new Pizza(18, 1, 0)
     allPizza.push(pizza1);
     allrefresh();
+    togglePrice(elements.checkboxPrice);
+    toggleCrust(elements.checkboxCrust);
 }
 
 function popular2(){
@@ -305,6 +307,8 @@ function popular2(){
     let pizza1 = new Pizza(18, 1, 0)
     allPizza.push(pizza1);
     allrefresh();
+    togglePrice(elements.checkboxPrice);
+    toggleCrust(elements.checkboxCrust);
 }
 
 function popular3(){
@@ -314,6 +318,8 @@ function popular3(){
     let pizza1 = new Pizza(16, 1, 0)
     allPizza.push(pizza1);
     allrefresh();
+    togglePrice(elements.checkboxPrice);
+    toggleCrust(elements.checkboxCrust);
 }
 
 function popular4(){
@@ -323,6 +329,8 @@ function popular4(){
     let pizza1 = new Pizza(16, 1, 0)
     allPizza.push(pizza1);
     allrefresh();
+    togglePrice(elements.checkboxPrice);
+    toggleCrust(elements.checkboxCrust);
 }
 
 function popular5(){
@@ -332,6 +340,8 @@ function popular5(){
     let pizza1 = new Pizza(12, 1, 0)
     allPizza.push(pizza1);
     allrefresh();
+    togglePrice(elements.checkboxPrice);
+    toggleCrust(elements.checkboxCrust);
 }
 
 function allrefresh(){

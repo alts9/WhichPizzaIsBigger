@@ -124,3 +124,26 @@ a{
     color: inherit;
     text-decoration-color: inherit;
 }
+
+.tooltip{
+    text-decoration:underline;
+    text-decoration-style: dotted;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: hsl(0, 0%, 20%);
+    color: hsl(0, 0%, 80%);;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+  
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}

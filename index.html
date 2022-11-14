@@ -29,9 +29,11 @@
         <h3 class="title">Compare pizza</h3>
         <div class="options">
             <input type="checkbox" name="checkboxCrust" id="checkboxCrust" checked>
-            <label for="checkCrust">Crust</label>
+            <label for="checkCrust">1" Crust</label>
             <input type="checkbox" name="checkboxPrice" id="checkboxPrice" checked>
-            <label for="checPrice">Price</label>
+            <label for="checPrice" class="tooltip">Price
+                <span class="tooltiptext">Insert price for entire qty, not single qty</span>
+            </label>
         </div>
         <div class="order">
         </div>
@@ -43,22 +45,14 @@
                     <th>Area (in<sup>2</sup>)</th>
                     <th>Crust (in<sup>2</sup>)</th>
                     <th>Area-crust (in<sup>2</sup>)</th>
-                    <th>Price ($)</th>
+                    <th >Price ($)
+                        
+                    </th>
                     <th>Price/in<sup>2</sup></th>
                     <th>Options</th>
                 </tr>
             </thead>
             <tbody  class="pizzaList">
-                <!-- <tr>
-                    <td><input type="number" class="diameterInput" name="" value="12"></td>
-                    <td><input type="number" class="quantityInput" name="" value="2"></td>
-                    <td class="area">113</td>
-                    <td class="crust">18</td>
-                    <td class="area-crust">95</td>
-                    <td><input type="number" class="priceInput" name="" value="10"></td>
-                    <td class="pricePerIn">0.1</td>
-                    <td><button class="deleteButton">Delete</button></td>
-                </tr> -->
                 <tr class="addRow">
                     <td></td>
                     <td></td>
