@@ -36,64 +36,66 @@ const elements = (() => {
 })();
 
 function generalEvent() {
-  elements.addButton.onmousedown = () => addNewPizza();
-  elements.checkboxCrust.oninput = () => toggleCrust(checkboxCrust);
-  elements.checkboxPrice.oninput = () => togglePrice(checkboxPrice);
-  elements.popular1.onmousedown = () => popular1();
-  elements.popular2.onmousedown = () => popular2();
-  elements.popular3.onmousedown = () => popular3();
-  elements.popular4.onmousedown = () => popular4();
-  elements.popular5.onmousedown = () => popular5();
+  //some use onclick because
+  elements.addButton.onclick = () => addNewPizza();
+  elements.checkboxCrust.onclick = () => toggleCrust();
+  elements.checkboxPrice.onclick = () => togglePrice();
+  elements.popular1.onclick = () => popular1();
+  elements.popular2.onclick = () => popular2();
+  elements.popular3.onclick = () => popular3();
+  elements.popular4.onclick = () => popular4();
+  elements.popular5.onclick = () => popular5();
 }
 
-function togglePrice(checkboxPrice) {
+function togglePrice() {
   elements.allShownPizza = document.querySelectorAll(".pizza");
-  let nextStatus = "none";
-  if (checkboxPrice.checked === true) {
-    nextStatus = "table-cell";
-  }
-  function toggle(nextStatus) {
+  elements.checkboxPrice.classList.contains("checked")
+    ? toggleColumn("table-cell")
+    : toggleColumn("none");
+  function toggleColumn(status) {
+    // hide 'crust' column & 'area-crust' column
     elements.table.childNodes[1].childNodes[1].childNodes[11].style.display =
-      nextStatus;
+      status;
     elements.table.childNodes[1].childNodes[1].childNodes[13].style.display =
-      nextStatus;
+      status;
     elements.allShownPizza.forEach((pizza) => {
-      pizza.childNodes[5].style.display = nextStatus;
-      pizza.childNodes[6].style.display = nextStatus;
+      pizza.childNodes[5].style.display = status;
+      pizza.childNodes[6].style.display = status;
     });
+    //hide 2 column from 'add' row
     let i = elements.table.childNodes[3].childNodes.length;
     elements.table.childNodes[3].childNodes[
       i - 2
-    ].childNodes[11].style.display = nextStatus;
+    ].childNodes[11].style.display = status;
     elements.table.childNodes[3].childNodes[
       i - 2
-    ].childNodes[13].style.display = nextStatus;
+    ].childNodes[13].style.display = status;
   }
-  toggle(nextStatus);
+  elements.checkboxPrice.classList.toggle("checked");
 }
 
-function toggleCrust(checkboxCrust) {
+function toggleCrust() {
   elements.allShownPizza = document.querySelectorAll(".pizza");
   let nextStatus = "none";
-  if (checkboxCrust.checked === true) {
-    nextStatus = "table-cell";
-  }
-  function toggle(nextStatus) {
+  elements.checkboxCrust.classList.contains("checked")
+    ? toggleColumn("table-cell")
+    : toggleColumn("none");
+  function toggleColumn(status) {
     elements.table.childNodes[1].childNodes[1].childNodes[7].style.display =
-      nextStatus;
+      status;
     elements.table.childNodes[1].childNodes[1].childNodes[9].style.display =
-      nextStatus;
+      status;
     elements.allShownPizza.forEach((pizza) => {
-      pizza.childNodes[3].style.display = nextStatus;
-      pizza.childNodes[4].style.display = nextStatus;
+      pizza.childNodes[3].style.display = status;
+      pizza.childNodes[4].style.display = status;
     });
     let i = elements.table.childNodes[3].childNodes.length;
     elements.table.childNodes[3].childNodes[i - 2].childNodes[7].style.display =
-      nextStatus;
+      status;
     elements.table.childNodes[3].childNodes[i - 2].childNodes[9].style.display =
-      nextStatus;
+      status;
   }
-  toggle(nextStatus);
+  elements.checkboxCrust.classList.toggle("checked");
 }
 
 function addNewPizza() {
@@ -108,7 +110,7 @@ function addNewPizza() {
 function deleteEvent() {
   allDelete = document.querySelectorAll(".deleteButton");
   allDelete.forEach((deleteButton) => {
-    deleteButton.onmousedown = () => deletePizza(deleteButton.dataset.id);
+    deleteButton.onclick = () => deletePizza(deleteButton.dataset.id);
   });
 }
 
@@ -319,8 +321,6 @@ function popular1() {
   let pizza1 = new Pizza(18, 1, 0);
   allPizza.push(pizza1);
   allrefresh();
-  togglePrice(elements.checkboxPrice);
-  toggleCrust(elements.checkboxCrust);
 }
 
 function popular2() {
@@ -330,8 +330,6 @@ function popular2() {
   let pizza1 = new Pizza(18, 1, 0);
   allPizza.push(pizza1);
   allrefresh();
-  togglePrice(elements.checkboxPrice);
-  toggleCrust(elements.checkboxCrust);
 }
 
 function popular3() {
@@ -341,8 +339,6 @@ function popular3() {
   let pizza1 = new Pizza(16, 1, 0);
   allPizza.push(pizza1);
   allrefresh();
-  togglePrice(elements.checkboxPrice);
-  toggleCrust(elements.checkboxCrust);
 }
 
 function popular4() {
@@ -352,8 +348,6 @@ function popular4() {
   let pizza1 = new Pizza(16, 1, 0);
   allPizza.push(pizza1);
   allrefresh();
-  togglePrice(elements.checkboxPrice);
-  toggleCrust(elements.checkboxCrust);
 }
 
 function popular5() {
@@ -363,8 +357,6 @@ function popular5() {
   let pizza1 = new Pizza(12, 1, 0);
   allPizza.push(pizza1);
   allrefresh();
-  togglePrice(elements.checkboxPrice);
-  toggleCrust(elements.checkboxCrust);
 }
 
 function allrefresh() {

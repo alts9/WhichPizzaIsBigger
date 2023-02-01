@@ -25,7 +25,7 @@ input[type="reset"] {
 
 input[type="number"] {
   width: 30px;
-  border: 1px solid hsl(0, 0%, 80%);
+  border: 1px solid hsl(43, 100%, 55%);
   border-radius: 3px;
 }
 
@@ -197,7 +197,7 @@ input[type="checkbox"] {
 }
 
 /* Create a custom checkbox */
-.checkmark {
+.checkmarkBox {
   position: absolute;
   top: 0;
   left: 0;
@@ -207,29 +207,29 @@ input[type="checkbox"] {
 }
 
 /* On mouse-over, add a background color */
-.checkboxContainer:hover input ~ .checkmark {
+.checkboxContainer:hover input ~ .checkmarkBox {
   background-color: hsl(43, 100%, 55%);
 }
 
 /* When the checkbox is checked, add a background */
-.checkboxContainer input:checked ~ .checkmark {
+.checkboxContainer input:checked ~ .checkmarkBox {
   background-color: hsl(43, 100%, 65%);
 }
 
 /* Create the checkmark/indicator (hidden when not checked) */
-.checkmark:after {
+.checkmarkBox:after {
   content: "";
   position: absolute;
   display: none;
 }
 
 /* Show the checkmark when checked */
-.checkboxContainer input:checked ~ .checkmark:after {
+.checkboxContainer input:checked ~ .checkmarkBox:after {
   display: block;
 }
 
 /* Style the checkmark/indicator */
-.checkboxContainer .checkmark:after {
+.checkboxContainer .checkmarkBox:after {
   left: 7px;
   top: 4px;
   width: 3px;
