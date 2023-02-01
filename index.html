@@ -1,74 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Which pizza is bigger?</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/x-icon" href="pizza.png">
-</head>
-<body>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Titan+One&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/x-icon" href="pizza.svg" />
+  </head>
+  <body>
     <header>
-        <button class="logo">
-            <h2><span>🍕</span> Which pizza is bigger?</h2>
-        </button>
+      <button class="logo">
+        <h2><img src="pizza.svg" alt="" /> Which pizza is bigger?</h2>
+      </button>
     </header>
-    <section class="popular">
+    <div class="container">
+      <section class="popular">
         <h3 class="title">Popular comparison</h3>
         <button id="popular1">18" vs 12"(2)</button>
         <button id="popular2">18" vs 16"</button>
         <button id="popular3">16" vs 12"(2)</button>
         <button id="popular4">16" vs 8"(4)</button>
         <button id="popular5">12" vs 8"(2)</button>
-    </section>
-    <section class="compare">
+      </section>
+      <section class="compare">
         <h3 class="title">Compare pizza</h3>
         <div class="options">
-            <input type="checkbox" name="checkboxCrust" id="checkboxCrust" checked>
-            <label for="checkCrust">1" Crust</label>
-            <input type="checkbox" name="checkboxPrice" id="checkboxPrice" checked>
-            <label for="checPrice" class="tooltip">Price
-                <span class="tooltiptext">Insert price for entire qty, not single qty</span>
-            </label>
+          <input
+            type="checkbox"
+            name="checkboxCrust"
+            id="checkboxCrust"
+            checked
+          />
+          <label for="checkCrust">1" Crust</label>
+          <input
+            type="checkbox"
+            name="checkboxPrice"
+            id="checkboxPrice"
+            checked
+          />
+          <label for="checPrice" class="tooltip"
+            >Price
+            <span class="tooltiptext"
+              >Insert price for entire qty, not single qty</span
+            >
+          </label>
         </div>
-        <div class="order">
-        </div>
+        <div class="order"></div>
         <table>
-            <thead>
-                <tr>
-                    <th>Diameter (in)</th>
-                    <th>Qty</th>
-                    <th>Area (in<sup>2</sup>)</th>
-                    <th>Crust (in<sup>2</sup>)</th>
-                    <th>Area-crust (in<sup>2</sup>)</th>
-                    <th >Price ($)
-                        
-                    </th>
-                    <th>Price/in<sup>2</sup></th>
-                    <th>Options</th>
-                </tr>
-            </thead>
-            <tbody  class="pizzaList">
-                <tr class="addRow">
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td><button class="addButton">Add New</button></td>
-                </tr>
-            </tbody>
+          <thead>
+            <tr>
+              <th>Diameter (in)</th>
+              <th>Qty</th>
+              <th>Area (in<sup>2</sup>)</th>
+              <th>Crust (in<sup>2</sup>)</th>
+              <th>Area-crust (in<sup>2</sup>)</th>
+              <th>Price ($)</th>
+              <th>Price/in<sup>2</sup></th>
+              <th>Options</th>
+            </tr>
+          </thead>
+          <tbody class="pizzaList">
+            <tr class="addRow">
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td><button class="addButton">Add</button></td>
+            </tr>
+          </tbody>
         </table>
-    </section>
-    <footer>
-        2022 - <a href="https://github.com/alts9">alts9</a>
-    </footer>
-</body>
-<script src="script.js"></script>
+      </section>
+    </div>
+    <footer>2023 - <a href="https://github.com/alts9">alts9</a></footer>
+  </body>
+  <script src="script.js"></script>
 </html>

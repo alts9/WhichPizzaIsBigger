@@ -1,149 +1,175 @@
-body{
-    font-family: Rubik, sans-serif;
-    color: hsl(0, 0%, 25%);
-    margin: 0% auto;
-    width: 750px;
-    /*flex-direction: column;
-    align-items: center; */
+body {
+  font-family: Rubik, sans-serif;
+  color: hsl(0, 0%, 13%);
+  margin: 0% auto;
+  /* width: 750px; */
+  background-color: hsl(43, 100%, 85%);
+  padding-left: 20px;
+  padding-right: 20px;
+  flex-direction: column;
+  align-items: center;
 }
 
-button, input[type="submit"], input[type="reset"]{
-	background: none;
-	color: inherit;
-	border: none;
-	padding: 0;
-	font: inherit;
-	cursor: pointer;
-	outline: inherit;
-    font-size: 0.9rem;
+button,
+input[type="submit"],
+input[type="reset"] {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+  font-size: 0.9rem;
 }
 
-input[type="number"]{
-    width: 30px;
-    border: 1px solid hsl(0, 0%, 80%);
-    border-radius: 3px;
+input[type="number"] {
+  width: 30px;
+  border: 1px solid hsl(0, 0%, 80%);
+  border-radius: 3px;
 }
 
-P{
-    margin: 0px;
+P {
+  margin: 0px;
 }
 
-header{
-    padding-top: 15px;
-    text-align: center;
+header {
+  padding-top: 15px;
+  text-align: center;
+  font-family: "Titan One", sans-serif;
 }
 
-header .logo{
-    font-size: 35px;
+header .logo {
+  font-size: 35px;
 }
 
-header .logo span{
-    font-weight: 300;
-} 
-
-.popular button{
-    padding: 3px 6px;
-    background-color: hsl(0, 0%, 95%);
-    border-radius: 5px;
+h2 {
+  font-weight: 400;
 }
 
-.popular button:hover{
-    background-color: hsl(0, 0%, 80%);
+.container {
+  text-align: center;
 }
 
-.compare{
-    padding-top: 20px;
+.popular button {
+  padding: 4px 6px 2px 6px;
+  background-color: hsl(43, 100%, 68%);
+  border-radius: 3px;
+  margin-right: 5px;
+  font-size: 0.9rem;
 }
 
-.compare .options{
-    padding-bottom: 10px;
+.popular button:hover {
+  background-color: hsl(43, 100%, 55%);
 }
 
-.compare .options label{
-    padding-right: 15px;
+.compare {
+  padding-top: 20px;
 }
 
-table{
-    font-size: 0.9rem;
-    border-spacing:0; /* Removes the cell spacing via CSS */
-    border-collapse: collapse; 
+.compare .options {
+  padding-bottom: 10px;
 }
 
-thead{
-    background-color: aliceblue;
+.compare .options label {
+  padding-right: 15px;
 }
 
-tr{
-    height: 35px;
+table {
+  font-size: 0.9rem;
+  border-spacing: 0; /* Removes the cell spacing via CSS */
+  border-collapse: collapse;
+  border-radius: 0.3rem;
+  overflow: hidden;
+  margin: auto;
+  box-shadow: hsl(43, 100%, 70%) 0px 0px 0px 1px;
 }
 
-th{
-    padding: 4px 10px;
+thead {
+  background-color: aliceblue;
 }
 
-td{
-    text-align: center;
-    font-size: 0.9rem;
+tr {
+  height: 45px;
 }
 
-.pizzaList tr:nth-child(even){
-    background-color: #f2f2f2;
+th {
+  padding: 4px 10px;
+  background-color: hsl(43, 100%, 70%);
 }
 
-
-.deleteButton, .addButton{
-    padding: 4px 6px;
-    border-radius: 5px;
-    color: hsl(0, 0%, 97%);
-    font-size: 0.8rem;
-    width: 70px;
+td {
+  text-align: center;
+  font-size: 0.9rem;
+  padding: 0px 8px;
 }
 
-.deleteButton{
-    background-color: hsl(0, 100%, 70%);
+.pizzaList tr:nth-child(even) {
+  background-color: hsl(43, 100%, 78%);
 }
 
-.deleteButton:hover{
-    background-color: hsl(0, 70%, 60%);
+input {
+  background-color: inherit;
 }
 
-.addButton{
-    background-color: hsl(150, 77%, 57%);
+.deleteButton,
+.addButton {
+  padding: 4px 6px;
+  border-radius: 5px;
+  color: hsl(0, 0%, 97%);
+  font-size: 0.8rem;
+  width: 55px;
 }
 
-.addButton:hover{
-    background-color: hsl(150, 57%, 47%);
+.deleteButton {
+  background-color: hsl(0, 100%, 75%);
 }
 
-footer{
-    padding-top: 100px;
-    text-align: center;
+.deleteButton:hover {
+  background-color: hsl(0, 70%, 60%);
 }
 
-a{
-    color: inherit;
-    text-decoration-color: inherit;
+.addButton {
+  background-color: hsl(150, 77%, 57%);
 }
 
-.tooltip{
-    text-decoration:underline;
-    text-decoration-style: dotted;
+.addButton:hover {
+  background-color: hsl(150, 57%, 47%);
+}
+
+footer {
+  padding-top: 100px;
+  text-align: center;
+}
+
+a {
+  color: inherit;
+  text-decoration-color: inherit;
+}
+
+.tooltip {
+  text-decoration: underline;
+  text-decoration-style: dotted;
 }
 
 .tooltip .tooltiptext {
-    visibility: hidden;
-    width: 120px;
-    background-color: hsl(0, 0%, 20%);
-    color: hsl(0, 0%, 80%);;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px 0;
-  
-    /* Position the tooltip */
-    position: absolute;
-    z-index: 1;
+  visibility: hidden;
+  width: 120px;
+  background-color: hsl(0, 0%, 20%);
+  color: hsl(0, 0%, 80%);
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
 }
 
 .tooltip:hover .tooltiptext {
-    visibility: visible;
+  visibility: visible;
+}
+
+img {
+  height: 50px;
 }
