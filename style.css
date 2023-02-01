@@ -53,10 +53,11 @@ h2 {
 
 .popular button {
   padding: 4px 6px 2px 6px;
+  margin-bottom: 8px;
   background-color: hsl(43, 100%, 68%);
   border-radius: 3px;
   margin-right: 5px;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
 }
 
 .popular button:hover {
@@ -68,7 +69,7 @@ h2 {
 }
 
 .compare .options {
-  padding-bottom: 10px;
+  padding-bottom: 25px;
 }
 
 .compare .options label {
@@ -154,12 +155,12 @@ a {
 
 .tooltip .tooltiptext {
   visibility: hidden;
-  width: 120px;
+  width: 150px;
   background-color: hsl(0, 0%, 20%);
   color: hsl(0, 0%, 80%);
   text-align: center;
   border-radius: 6px;
-  padding: 5px 0;
+  padding: 5px 5px;
 
   /* Position the tooltip */
   position: absolute;
@@ -173,3 +174,71 @@ a {
 img {
   height: 50px;
 }
+
+/*#region custom checkbox  */
+.checkboxContainer {
+  position: relative;
+  padding-left: 25px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 18px;
+  width: 18px;
+  background-color: hsl(43, 100%, 70%);
+}
+
+/* On mouse-over, add a background color */
+.checkboxContainer:hover input ~ .checkmark {
+  background-color: hsl(43, 100%, 55%);
+}
+
+/* When the checkbox is checked, add a background */
+.checkboxContainer input:checked ~ .checkmark {
+  background-color: hsl(43, 100%, 65%);
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.checkboxContainer input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.checkboxContainer .checkmark:after {
+  left: 7px;
+  top: 4px;
+  width: 3px;
+  height: 6px;
+  border: solid hsl(0, 0%, 13%);
+  border-width: 0 2px 2px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+/*#endregion  */
