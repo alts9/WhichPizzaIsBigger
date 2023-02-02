@@ -1,3 +1,5 @@
+import { Pizza } from "./modules/object.js";
+
 const elements = (() => {
   const pizzaList = document.querySelector(".pizzaList");
   const addRow = document.querySelector(".addRow");
@@ -40,63 +42,60 @@ function generalEvent() {
   elements.addButton.onclick = () => addNewPizza();
   elements.checkboxCrust.onclick = () => toggleCrust();
   elements.checkboxPrice.onclick = () => togglePrice();
-  elements.popular1.onclick = () => popular1();
-  elements.popular2.onclick = () => popular2();
-  elements.popular3.onclick = () => popular3();
-  elements.popular4.onclick = () => popular4();
-  elements.popular5.onclick = () => popular5();
+  elements.popular1.onclick = () => showPopularPizza([12, 2, 0], [18, 1, 0]);
+  elements.popular2.onclick = () => showPopularPizza([16, 1, 0], [18, 1, 0]);
+  elements.popular3.onclick = () => showPopularPizza([12, 2, 0], [16, 1, 0]);
+  elements.popular4.onclick = () => showPopularPizza([8, 4, 0], [11, 1, 0]);
+  elements.popular5.onclick = () => showPopularPizza([8, 2, 0], [12, 1, 0]);
 }
 
+//#region toggle display
 function togglePrice() {
   elements.allShownPizza = document.querySelectorAll(".pizza");
   elements.checkboxPrice.classList.contains("checked")
-    ? toggleColumn("table-cell")
-    : toggleColumn("none");
-  function toggleColumn(status) {
-    // hide 'crust' column & 'area-crust' column
-    elements.table.childNodes[1].childNodes[1].childNodes[11].style.display =
-      status;
-    elements.table.childNodes[1].childNodes[1].childNodes[13].style.display =
-      status;
-    elements.allShownPizza.forEach((pizza) => {
-      pizza.childNodes[5].style.display = status;
-      pizza.childNodes[6].style.display = status;
-    });
-    //hide 2 column from 'add' row
-    let i = elements.table.childNodes[3].childNodes.length;
-    elements.table.childNodes[3].childNodes[
-      i - 2
-    ].childNodes[11].style.display = status;
-    elements.table.childNodes[3].childNodes[
-      i - 2
-    ].childNodes[13].style.display = status;
-  }
+    ? toggleColumns(11, 13, 5, 6, "table-cell")
+    : toggleColumns(11, 13, 5, 6, "none");
   elements.checkboxPrice.classList.toggle("checked");
 }
 
 function toggleCrust() {
   elements.allShownPizza = document.querySelectorAll(".pizza");
-  let nextStatus = "none";
   elements.checkboxCrust.classList.contains("checked")
-    ? toggleColumn("table-cell")
-    : toggleColumn("none");
-  function toggleColumn(status) {
-    elements.table.childNodes[1].childNodes[1].childNodes[7].style.display =
-      status;
-    elements.table.childNodes[1].childNodes[1].childNodes[9].style.display =
-      status;
-    elements.allShownPizza.forEach((pizza) => {
-      pizza.childNodes[3].style.display = status;
-      pizza.childNodes[4].style.display = status;
-    });
-    let i = elements.table.childNodes[3].childNodes.length;
-    elements.table.childNodes[3].childNodes[i - 2].childNodes[7].style.display =
-      status;
-    elements.table.childNodes[3].childNodes[i - 2].childNodes[9].style.display =
-      status;
-  }
+    ? toggleColumns(7, 9, 3, 4, "table-cell")
+    : toggleColumns(7, 9, 3, 4, "none");
   elements.checkboxCrust.classList.toggle("checked");
 }
+
+function toggleColumns(col1, col2, col1b, col2b, status) {
+  toggleHeaderColumn(col1, status);
+  toggleHeaderColumn(col2, status);
+  //hide pizza
+  togglePizzaColumn(col1b, status);
+  togglePizzaColumn(col2b, status);
+  //hide from last row(add pizza row)
+  toggleAddColumn(col1, status);
+  toggleAddColumn(col2, status);
+}
+
+function toggleHeaderColumn(col, status) {
+  let headerRow = elements.table.childNodes[1].childNodes[1];
+  headerRow.childNodes[col].style.display = status;
+}
+
+function togglePizzaColumn(col, status) {
+  elements.allShownPizza = document.querySelectorAll(".pizza");
+  elements.allShownPizza.forEach((pizza) => {
+    pizza.childNodes[col].style.display = status;
+  });
+}
+
+function toggleAddColumn(col, status) {
+  let tableContent = elements.table.childNodes[3];
+  let tableRowCount = tableContent.childNodes.length;
+  tableContent.childNodes[tableRowCount - 2].childNodes[col].style.display =
+    status;
+}
+//#endregion
 
 function addNewPizza() {
   let newPizza = new Pizza(10, 1, 10);
@@ -108,8 +107,8 @@ function addNewPizza() {
 }
 
 function deleteEvent() {
-  allDelete = document.querySelectorAll(".deleteButton");
-  allDelete.forEach((deleteButton) => {
+  elements.allDelete = document.querySelectorAll(".deleteButton");
+  elements.allDelete.forEach((deleteButton) => {
     deleteButton.onclick = () => deletePizza(deleteButton.dataset.id);
   });
 }
@@ -123,8 +122,8 @@ function deletePizza(idToDelete) {
 }
 
 function diameterEvent() {
-  allDiameter = document.querySelectorAll(".diameterInput");
-  allDiameter.forEach((diameterInput) => {
+  elements.allDiameter = document.querySelectorAll(".diameterInput");
+  elements.allDiameter.forEach((diameterInput) => {
     diameterInput.oninput = () =>
       updateDiameter(diameterInput.value, diameterInput.dataset.id);
   });
@@ -136,8 +135,8 @@ function updateDiameter(newValue, id) {
 }
 
 function quantityEvent() {
-  allQuantity = document.querySelectorAll(".quantityInput");
-  allQuantity.forEach((quantityInput) => {
+  elements.allQuantity = document.querySelectorAll(".quantityInput");
+  elements.allQuantity.forEach((quantityInput) => {
     quantityInput.oninput = () =>
       updateQuantity(quantityInput.value, quantityInput.dataset.id);
   });
@@ -149,8 +148,8 @@ function updateQuantity(newValue, id) {
 }
 
 function priceEvent() {
-  allPrice = document.querySelectorAll(".priceInput");
-  allPrice.forEach((priceInput) => {
+  elements.allPrice = document.querySelectorAll(".priceInput");
+  elements.allPrice.forEach((priceInput) => {
     priceInput.oninput = () =>
       updatePrice(priceInput.value, priceInput.dataset.id);
   });
@@ -163,80 +162,13 @@ function updatePrice(newValue, id) {
 
 //fixedValue: area, crust, area-crust, price/in
 function updateFixedValue(id) {
-  allShownPizza = document.querySelectorAll(".pizza");
+  elements.allShownPizza = document.querySelectorAll(".pizza");
   allShownPizza[id].childNodes[2].innerText = allPizza[id].countArea();
   allShownPizza[id].childNodes[3].innerText = allPizza[id].countCrust();
   allShownPizza[id].childNodes[4].innerText = allPizza[id].countAreaMinCrust();
   allShownPizza[id].childNodes[6].innerText =
     allPizza[id].countPricePerSquareInch();
 }
-
-function updateIndex() {
-  for (i = 0; i < allPizza.length; i++) {
-    allPizza[i]._id = i;
-  }
-}
-
-let allPizza = [];
-pizzaId = 0;
-
-class Pizza {
-  constructor(diameter, quantity, price) {
-    this.diameter = diameter;
-    this.quantity = quantity;
-    this.price = price;
-    pizzaId++;
-  }
-
-  get diameter() {
-    return this._diameter;
-  }
-
-  set diameter(value) {
-    this._diameter = value;
-  }
-
-  get quantity() {
-    return this._quantity;
-  }
-
-  set quantity(value) {
-    this._quantity = value;
-  }
-
-  get price() {
-    return this._price;
-  }
-
-  set price(value) {
-    this._price = value;
-  }
-
-  countArea() {
-    return (3.14 * (this._diameter / 2) ** 2 * this._quantity).toFixed(0);
-  }
-
-  countCrust() {
-    return (this.countArea() - this.countAreaMinCrust()).toFixed(0);
-  }
-
-  countAreaMinCrust() {
-    return (3.14 * ((this._diameter - 1) / 2) ** 2 * this._quantity).toFixed(0);
-  }
-
-  countPricePerSquareInch() {
-    return (this._price / this.countArea()).toFixed(2);
-  }
-}
-
-let pizza4 = new Pizza(6, 1, 6);
-allPizza.push(pizza4);
-let pizza3 = new Pizza(8, 1, 8);
-allPizza.push(pizza3);
-let pizza2 = new Pizza(10, 1, 10);
-allPizza.push(pizza2);
-// let pizza1 = new Pizza(12, 1, 12)
-// allPizza.push(pizza1);
 
 function addDisplayedPizza(pizza, i) {
   let tr = document.createElement("tr");
@@ -300,7 +232,7 @@ function addDisplayedPizza(pizza, i) {
 }
 
 function removeAllShownPizza() {
-  allShownPizza = document.querySelectorAll(".pizza");
+  let allShownPizza = document.querySelectorAll(".pizza");
   allShownPizza.forEach((pizza) => {
     pizza.remove();
   });
@@ -308,58 +240,22 @@ function removeAllShownPizza() {
 
 function refreshDisplayedPizza() {
   removeAllShownPizza();
-  for (i = 0; i < allPizza.length; i++) {
+  for (let i = 0; i < allPizza.length; i++) {
     addDisplayedPizza(allPizza[i], i);
   }
   deleteEvent();
 }
 
-function popular1() {
+function showPopularPizza(p1, p2) {
   allPizza = [];
-  let pizza2 = new Pizza(12, 2, 0);
-  allPizza.push(pizza2);
-  let pizza1 = new Pizza(18, 1, 0);
+  let pizza1 = new Pizza(p1[0], p1[1], p1[2]);
   allPizza.push(pizza1);
-  allrefresh();
+  let pizza2 = new Pizza(p2[0], p2[1], p2[2]);
+  allPizza.push(pizza2);
+  refreshAll();
 }
 
-function popular2() {
-  allPizza = [];
-  let pizza2 = new Pizza(16, 1, 0);
-  allPizza.push(pizza2);
-  let pizza1 = new Pizza(18, 1, 0);
-  allPizza.push(pizza1);
-  allrefresh();
-}
-
-function popular3() {
-  allPizza = [];
-  let pizza2 = new Pizza(12, 2, 0);
-  allPizza.push(pizza2);
-  let pizza1 = new Pizza(16, 1, 0);
-  allPizza.push(pizza1);
-  allrefresh();
-}
-
-function popular4() {
-  allPizza = [];
-  let pizza2 = new Pizza(8, 4, 0);
-  allPizza.push(pizza2);
-  let pizza1 = new Pizza(16, 1, 0);
-  allPizza.push(pizza1);
-  allrefresh();
-}
-
-function popular5() {
-  allPizza = [];
-  let pizza2 = new Pizza(8, 2, 0);
-  allPizza.push(pizza2);
-  let pizza1 = new Pizza(12, 1, 0);
-  allPizza.push(pizza1);
-  allrefresh();
-}
-
-function allrefresh() {
+function refreshAll() {
   refreshDisplayedPizza();
   deleteEvent();
   diameterEvent();
@@ -368,4 +264,14 @@ function allrefresh() {
   generalEvent();
 }
 
-allrefresh();
+let allPizza = [];
+
+//fill table with sample data
+let pizza4 = new Pizza(6, 1, 6);
+allPizza.push(pizza4);
+let pizza3 = new Pizza(8, 1, 8);
+allPizza.push(pizza3);
+let pizza2 = new Pizza(10, 1, 10);
+allPizza.push(pizza2);
+
+refreshAll();
