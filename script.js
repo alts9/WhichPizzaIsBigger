@@ -53,16 +53,16 @@ function generalEvent() {
 function togglePrice() {
   elements.allShownPizza = document.querySelectorAll(".pizza");
   elements.checkboxPrice.classList.contains("checked")
-    ? toggleColumns(11, 13, 5, 6, "table-cell")
-    : toggleColumns(11, 13, 5, 6, "none");
+    ? toggleColumns(11, 13, 5, 6, "none")
+    : toggleColumns(11, 13, 5, 6, "table-cell");
   elements.checkboxPrice.classList.toggle("checked");
 }
 
 function toggleCrust() {
   elements.allShownPizza = document.querySelectorAll(".pizza");
   elements.checkboxCrust.classList.contains("checked")
-    ? toggleColumns(7, 9, 3, 4, "table-cell")
-    : toggleColumns(7, 9, 3, 4, "none");
+    ? toggleColumns(7, 9, 3, 4, "none")
+    : toggleColumns(7, 9, 3, 4, "table-cell");
   elements.checkboxCrust.classList.toggle("checked");
 }
 
@@ -162,7 +162,7 @@ function updatePrice(newValue, id) {
 
 //fixedValue: area, crust, area-crust, price/in
 function updateFixedValue(id) {
-  elements.allShownPizza = document.querySelectorAll(".pizza");
+  let allShownPizza = document.querySelectorAll(".pizza");
   allShownPizza[id].childNodes[2].innerText = allPizza[id].countArea();
   allShownPizza[id].childNodes[3].innerText = allPizza[id].countCrust();
   allShownPizza[id].childNodes[4].innerText = allPizza[id].countAreaMinCrust();

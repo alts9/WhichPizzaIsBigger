@@ -185,15 +185,7 @@ img {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-}
-
-/* Hide the browser's default checkbox */
-input[type="checkbox"] {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-  height: 0;
-  width: 0;
+  margin-right: 20px;
 }
 
 /* Create a custom checkbox */
@@ -207,29 +199,16 @@ input[type="checkbox"] {
 }
 
 /* On mouse-over, add a background color */
-.checkboxContainer:hover input ~ .checkmarkBox {
+.checkmarkBox:hover {
   background-color: hsl(43, 100%, 55%);
 }
 
-/* When the checkbox is checked, add a background */
-.checkboxContainer input:checked ~ .checkmarkBox {
-  background-color: hsl(43, 100%, 65%);
-}
-
-/* Create the checkmark/indicator (hidden when not checked) */
-.checkmarkBox:after {
+/* Style the checkmark/indicator */
+.checked:after {
   content: "";
   position: absolute;
   display: none;
-}
-
-/* Show the checkmark when checked */
-.checkboxContainer input:checked ~ .checkmarkBox:after {
   display: block;
-}
-
-/* Style the checkmark/indicator */
-.checkboxContainer .checkmarkBox:after {
   left: 7px;
   top: 4px;
   width: 3px;
