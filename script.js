@@ -51,7 +51,6 @@ function generalEvent() {
 
 //#region toggle display
 function togglePrice() {
-  elements.allShownPizza = document.querySelectorAll(".pizza");
   elements.checkboxPrice.classList.contains("checked")
     ? toggleColumns(11, 13, 5, 6, "none")
     : toggleColumns(11, 13, 5, 6, "table-cell");
@@ -59,7 +58,6 @@ function togglePrice() {
 }
 
 function toggleCrust() {
-  elements.allShownPizza = document.querySelectorAll(".pizza");
   elements.checkboxCrust.classList.contains("checked")
     ? toggleColumns(7, 9, 3, 4, "none")
     : toggleColumns(7, 9, 3, 4, "table-cell");
@@ -94,6 +92,18 @@ function toggleAddColumn(col, status) {
   let tableRowCount = tableContent.childNodes.length;
   tableContent.childNodes[tableRowCount - 2].childNodes[col].style.display =
     status;
+}
+
+//when refresh displayed pizza, all hidden cell will be shown
+//This function used to prevent that
+function keepCellHidden() {
+  elements.checkboxPrice.classList.contains("checked")
+    ? toggleColumns(11, 13, 5, 6, "table-cell")
+    : toggleColumns(11, 13, 5, 6, "none");
+
+  elements.checkboxCrust.classList.contains("checked")
+    ? toggleColumns(7, 9, 3, 4, "table-cell")
+    : toggleColumns(7, 9, 3, 4, "none");
 }
 //#endregion
 
@@ -182,6 +192,8 @@ function addDisplayedPizza(pizza, i) {
   input.setAttribute("type", "number");
   input.classList.add("diameterInput");
   input.setAttribute("data-id", i);
+  input.min = "1";
+  input.max = "99";
   td.appendChild(input);
   tr.appendChild(td);
   //qty
@@ -191,6 +203,8 @@ function addDisplayedPizza(pizza, i) {
   input.setAttribute("type", "number");
   input.classList.add("quantityInput");
   input.setAttribute("data-id", i);
+  input.min = "1";
+  input.max = "99";
   td.appendChild(input);
   tr.appendChild(td);
   //area
@@ -212,6 +226,9 @@ function addDisplayedPizza(pizza, i) {
   input.setAttribute("type", "number");
   input.classList.add("priceInput");
   input.setAttribute("data-id", i);
+  input.min = "1";
+  input.max = "999";
+  input.classList.add("priceInput");
   td.appendChild(input);
   tr.appendChild(td);
   //price/in
@@ -244,6 +261,7 @@ function refreshDisplayedPizza() {
     addDisplayedPizza(allPizza[i], i);
   }
   deleteEvent();
+  keepCellHidden();
 }
 
 function showPopularPizza(p1, p2) {

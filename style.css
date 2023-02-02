@@ -29,6 +29,10 @@ input[type="number"] {
   border-radius: 3px;
 }
 
+.priceInput {
+  width: 40px !important;
+}
+
 P {
   margin: 0px;
 }
