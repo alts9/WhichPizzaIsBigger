@@ -1,4 +1,4 @@
-import { Pizza } from "./modules/object.js";
+import { Pizza } from "./object.js";
 
 const elements = (() => {
   const pizzaList = document.querySelector(".pizzaList");
@@ -45,7 +45,7 @@ function generalEvent() {
   elements.popular1.onclick = () => showPopularPizza([12, 2, 0], [18, 1, 0]);
   elements.popular2.onclick = () => showPopularPizza([16, 1, 0], [18, 1, 0]);
   elements.popular3.onclick = () => showPopularPizza([12, 2, 0], [16, 1, 0]);
-  elements.popular4.onclick = () => showPopularPizza([8, 4, 0], [11, 1, 0]);
+  elements.popular4.onclick = () => showPopularPizza([8, 4, 0], [16, 1, 0]);
   elements.popular5.onclick = () => showPopularPizza([8, 2, 0], [12, 1, 0]);
 }
 
