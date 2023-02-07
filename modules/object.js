@@ -1,4 +1,4 @@
-module.exports = class Pizza {
+class Pizza {
   constructor(diameter, quantity, price) {
     this.diameter = diameter;
     this.quantity = quantity;
@@ -44,4 +44,6 @@ module.exports = class Pizza {
   countPricePerSquareInch() {
     return (this._price / this.countArea()).toFixed(2);
   }
-};
+}
+
+export { Pizza };
